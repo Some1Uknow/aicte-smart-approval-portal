@@ -5,9 +5,9 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <header className="bg-gray-900 text-white py-1">
-        <div className="container mx-auto flex justify-between items-center px-4">
+        <div className="container mx-auto flex justify-between items-center px-4 flex-wrap">
           <div className="flex items-center space-x-2">
-            <span>Sunday, September 1, 2024 - 00:01:14 IST</span>
+            <span className="text-sm">Sunday, September 1, 2024 - 00:01:14 IST</span>
             <button className="text-sm">Screen Reader Access</button>
           </div>
           <div className="flex items-center space-x-4">
@@ -28,12 +28,12 @@ const LandingPage = () => {
 
       <nav className="bg-white shadow-md">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center py-3">
+          <div className="flex justify-between items-center py-3 flex-wrap">
             <div className="flex items-center">
               <img
                 src="https://www.aicte-india.org/sites/default/files/logo_new.png"
                 alt="AI Inspection System Logo"
-                className="mr-4"
+                className="mr-4 h-10"
               />
               <div>
                 <h1 className="text-xl font-bold text-gray-800">
@@ -44,11 +44,11 @@ const LandingPage = () => {
                 </p>
               </div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center w-full md:w-auto mt-3 md:mt-0">
               <input
                 type="text"
                 placeholder="Search..."
-                className="border rounded-l px-2 py-1"
+                className="border rounded-l px-2 py-1 w-full md:w-auto"
               />
               <button className="bg-orange-500 text-white px-3 py-1 rounded-r">
                 <span className="sr-only">Search</span>
@@ -61,7 +61,7 @@ const LandingPage = () => {
 
       <nav className="bg-orange-500">
         <div className="container mx-auto px-4">
-          <ul className="flex">
+          <ul className="flex flex-wrap justify-center">
             {[
               "Home",
               "About Us",
@@ -75,7 +75,7 @@ const LandingPage = () => {
             ].map((item) => (
               <li
                 key={item}
-                className="px-4 py-2 text-white hover:bg-orange-600 cursor-pointer"
+                className="px-4 py-2 text-white hover:bg-orange-600 cursor-pointer text-center"
               >
                 {item}
               </li>
@@ -89,7 +89,7 @@ const LandingPage = () => {
           <img
             src="/aicte.jpeg"
             alt="AI Inspection System Building"
-            className="w-full h-full object-center"
+            className="w-full h-full object-cover"
           />
           <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white p-4">
             <h2 className="text-3xl font-bold">AI-Driven Inspections</h2>
@@ -107,7 +107,7 @@ const LandingPage = () => {
             evaluating educational institutions across Engineering, Technology,
             Architecture, Town Planning, Management, Pharmacy, and Applied Arts.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               {
                 title: "Automated Facility Inspections",
