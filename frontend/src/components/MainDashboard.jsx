@@ -15,14 +15,12 @@ import {
   Bar,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
 } from "recharts";
 
 Modal.setAppElement("#root");
-
 const inspectionAreas = [
   {
     id: "faculty",
@@ -31,7 +29,8 @@ const inspectionAreas = [
     status: "approved",
     statusIcon: FaCheckCircle,
     feedback: "All faculty requirements have been met.",
-    details: "The institution has successfully maintained the required student-faculty ratio and ensured all faculty members have necessary qualifications.",
+    details:
+      "The institution has successfully maintained the required student-faculty ratio and ensured all faculty members have necessary qualifications.",
     documents: [
       { name: "Faculty Qualification Certificates", provided: true },
       { name: "Faculty Experience Letters", provided: true },
@@ -49,8 +48,10 @@ const inspectionAreas = [
     icon: FaBuilding,
     status: "pending",
     statusIcon: FaExclamationCircle,
-    feedback: "Needs improvement in laboratory equipment. Consider upgrading computer labs.",
-    details: "While most infrastructure requirements are met, the laboratory equipment, especially in computer labs, needs upgrading to meet current industry standards.",
+    feedback:
+      "Needs improvement in laboratory equipment. Consider upgrading computer labs.",
+    details:
+      "While most infrastructure requirements are met, the laboratory equipment, especially in computer labs, needs upgrading to meet current industry standards.",
     documents: [
       { name: "Building Safety Certificate", provided: true },
       { name: "Laboratory Inventory List", provided: true },
@@ -71,7 +72,8 @@ const inspectionAreas = [
     status: "approved",
     statusIcon: FaCheckCircle,
     feedback: "Curriculum meets industry standards and academic requirements.",
-    details: "The institution's curriculum is well-structured, up-to-date, and aligned with current industry needs and academic standards.",
+    details:
+      "The institution's curriculum is well-structured, up-to-date, and aligned with current industry needs and academic standards.",
     documents: [
       { name: "Course Syllabi", provided: true },
       { name: "Industry Partnership Agreements", provided: true },
@@ -90,7 +92,8 @@ const inspectionAreas = [
     status: "not_approved",
     statusIcon: FaTimesCircle,
     feedback: "Inadequate career counseling and placement services.",
-    details: "The institution needs to significantly improve its career counseling services and establish stronger industry connections for better placement opportunities.",
+    details:
+      "The institution needs to significantly improve its career counseling services and establish stronger industry connections for better placement opportunities.",
     documents: [
       { name: "Student Feedback Reports", provided: true },
       { name: "Placement Statistics", provided: false },
@@ -110,7 +113,8 @@ const inspectionAreas = [
     status: "pending",
     statusIcon: FaExclamationCircle,
     feedback: "Research publications and funding need improvement.",
-    details: "While there is active research ongoing, the number of publications in high-impact journals and the amount of research funding secured need to be increased.",
+    details:
+      "While there is active research ongoing, the number of publications in high-impact journals and the amount of research funding secured need to be increased.",
     documents: [
       { name: "Research Publication List", provided: true },
       { name: "Grant Proposals", provided: true },
@@ -133,7 +137,9 @@ const StatusBadge = ({ status }) => {
   };
 
   return (
-    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${colors[status]}`}>
+    <span
+      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${colors[status]}`}
+    >
       {status.charAt(0).toUpperCase() + status.slice(1)}
     </span>
   );
@@ -153,32 +159,44 @@ const MainDashboard = () => {
   };
 
   return (
-    <div className="space-y-6 p-6">
-      <h2 className="text-3xl font-semibold text-gray-900">Inspection Overview</h2>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+    <div className="space-y-4">
+      <h2 className="text-3xl font-semibold text-gray-900">
+        Inspection Overview
+      </h2>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {inspectionAreas.map((area) => (
           <div
             key={area.id}
             className="bg-white overflow-hidden shadow rounded-lg cursor-pointer hover:shadow-md transition-shadow duration-300 ease-in-out"
             onClick={() => openModal(area)}
           >
-            <div className="p-6 flex items-center">
+            <div className="p-4 flex items-center">
               <div className="flex-shrink-0 mr-4">
                 <area.statusIcon
-                  className={`h-12 w-12 ${
-                    area.status === 'approved' ? 'text-green-500' :
-                    area.status === 'pending' ? 'text-yellow-500' : 'text-red-500'
+                  className={`h-10 w-10 ${
+                    area.status === "approved"
+                      ? "text-green-500"
+                      : area.status === "pending"
+                      ? "text-yellow-500"
+                      : "text-red-500"
                   }`}
                   aria-hidden="true"
                 />
               </div>
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-xl font-medium text-gray-900">{area.name}</h3>
-                  <area.icon className="h-8 w-8 text-gray-400" aria-hidden="true" />
+                  <h3 className="text-lg font-medium text-gray-900 truncate">
+                    {area.name}
+                  </h3>
+                  <area.icon
+                    className="h-6 w-6 text-gray-400"
+                    aria-hidden="true"
+                  />
                 </div>
-                <p className="mt-1 text-sm text-gray-500 truncate">{area.feedback}</p>
-                <div className="mt-4">
+                <p className="mt-1 text-sm text-gray-500 truncate">
+                  {area.feedback}
+                </p>
+                <div className="mt-2">
                   <StatusBadge status={area.status} />
                 </div>
               </div>
@@ -195,16 +213,29 @@ const MainDashboard = () => {
         overlayClassName="overlay"
       >
         {selectedArea && (
-          <div className="bg-white rounded-lg shadow-xl p-6 max-w-2xl mx-auto">
+          <div className="bg-white rounded-lg shadow-xl p-4 max-w-2xl mx-auto">
             <div className="flex justify-between items-start">
               <h2 className="text-2xl font-bold text-gray-900 flex items-center">
                 <selectedArea.icon className="h-8 w-8 mr-2 text-blue-500" />
                 {selectedArea.name}
               </h2>
-              <button onClick={closeModal} className="text-gray-400 hover:text-gray-500">
+              <button
+                onClick={closeModal}
+                className="text-gray-400 hover:text-gray-500"
+              >
                 <span className="sr-only">Close</span>
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             </div>
@@ -212,14 +243,21 @@ const MainDashboard = () => {
             <div className="mt-4">
               <StatusBadge status={selectedArea.status} />
               <p className="mt-2 text-gray-600">{selectedArea.feedback}</p>
-              <p className="mt-2 text-sm text-gray-500">{selectedArea.details}</p>
+              <p className="mt-2 text-sm text-gray-500">
+                {selectedArea.details}
+              </p>
             </div>
 
-            <div className="mt-6">
-              <h3 className="text-lg font-medium text-gray-900">Document Checklist</h3>
+            <div className="mt-4">
+              <h3 className="text-lg font-medium text-gray-900">
+                Document Checklist
+              </h3>
               <ul className="mt-2 divide-y divide-gray-200">
                 {selectedArea.documents.map((doc, index) => (
-                  <li key={index} className="py-2 flex items-center justify-between">
+                  <li
+                    key={index}
+                    className="py-2 flex items-center justify-between"
+                  >
                     <span className="text-sm text-gray-600">{doc.name}</span>
                     {doc.provided ? (
                       <FaCheckCircle className="text-green-500" />
@@ -231,12 +269,11 @@ const MainDashboard = () => {
               </ul>
             </div>
 
-            <div className="mt-6">
+            <div className="mt-4">
               <h3 className="text-lg font-medium text-gray-900">Statistics</h3>
               <div className="mt-2 h-64">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={selectedArea.stats}>
-                    <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
@@ -247,12 +284,17 @@ const MainDashboard = () => {
               </div>
             </div>
 
-            <div className="mt-6">
-              <h3 className="text-lg font-medium text-gray-900">Recommendations</h3>
+            <div className="mt-4">
+              <h3 className="text-lg font-medium text-gray-900">
+                Recommendations
+              </h3>
               <ul className="mt-2 space-y-2">
                 {selectedArea.status !== "approved" && (
                   <li className="flex items-start">
-                    <FaExclamationCircle className="flex-shrink-0 h-5 w-5 text-yellow-400" aria-hidden="true" />
+                    <FaExclamationCircle
+                      className="flex-shrink-0 h-5 w-5 text-yellow-400"
+                      aria-hidden="true"
+                    />
                     <span className="ml-2 text-sm text-gray-600">
                       {selectedArea.status === "pending"
                         ? "Address feedback to move towards approval."
@@ -261,7 +303,10 @@ const MainDashboard = () => {
                   </li>
                 )}
                 <li className="flex items-start">
-                  <FaCheckCircle className="flex-shrink-0 h-5 w-5 text-green-400" aria-hidden="true" />
+                  <FaCheckCircle
+                    className="flex-shrink-0 h-5 w-5 text-green-400"
+                    aria-hidden="true"
+                  />
                   <span className="ml-2 text-sm text-gray-600">
                     Regularly update documentation to maintain compliance.
                   </span>
@@ -269,7 +314,7 @@ const MainDashboard = () => {
               </ul>
             </div>
 
-            <div className="mt-6">
+            <div className="mt-4">
               <button
                 onClick={closeModal}
                 className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"

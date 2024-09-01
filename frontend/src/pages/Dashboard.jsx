@@ -1,26 +1,18 @@
 import React, { useState } from "react";
-import {
-  FaUniversity,
-  FaClipboardCheck,
-  FaChartBar,
-  FaFileAlt,
-  FaCamera,
-  FaBell,
-  FaCog,
-} from "react-icons/fa";
+import { FaUniversity, FaClipboardCheck, FaBell, FaCog } from "react-icons/fa";
 import { IoMdDocument } from "react-icons/io";
-import MainDashboard from "./MainDashboard";
+import MainDashboard from "../components/MainDashboard";
+import Inspection from "../components/Inspection";
 import { RiDashboardLine } from "react-icons/ri";
-
+import Document from "../components/Document";
+import Notifications from "../components/Notifications";
+import Settings from "../components/Settings";
 // Placeholder components for each section
 const DashboardOverview = () => <MainDashboard />;
-const InspectionStatus = () => <div>Inspection Status Content</div>;
-const FacilityAnalysis = () => <div>Facility Analysis Content</div>;
-const DocumentAnalysis = () => <div>Document Analysis Content</div>;
-const ComplianceTracker = () => <div>Compliance Tracker Content</div>;
-const ReportsInsights = () => <div>Reports & Insights Content</div>;
-const Notifications = () => <div>Notifications Content</div>;
-const Settings = () => <div>Settings Content</div>;
+const InspectionStatus = () => <Inspection />;
+const DocumentAnalysis = () => <Document />;
+const NotificationsTab = () => <Notifications />;
+const SettingsComponent = () => <Settings/>;
 
 const Dashboard = () => {
   const [institute, setInstitute] = useState({
@@ -46,34 +38,16 @@ const Dashboard = () => {
       component: InspectionStatus,
     },
     {
-      id: "facilities",
-      name: "Facility Analysis",
-      icon: <FaCamera />,
-      component: FacilityAnalysis,
-    },
-    {
       id: "documents",
       name: "Document Analysis",
       icon: <IoMdDocument />,
       component: DocumentAnalysis,
     },
     {
-      id: "compliance",
-      name: "Compliance Tracker",
-      icon: <FaChartBar />,
-      component: ComplianceTracker,
-    },
-    {
-      id: "reports",
-      name: "Reports & Insights",
-      icon: <FaFileAlt />,
-      component: ReportsInsights,
-    },
-    {
       id: "notifications",
       name: "Notifications",
       icon: <FaBell />,
-      component: Notifications,
+      component: NotificationsTab,
     },
     { id: "settings", name: "Settings", icon: <FaCog />, component: Settings },
   ];
@@ -126,11 +100,9 @@ const Dashboard = () => {
         </header>
 
         {/* Page Content */}
-        <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <div className="px-4 py-6 sm:px-0">
-            <div className="border-4 border-dashed border-gray-200 rounded-lg h-96 p-4">
-              <ActiveComponent />
-            </div>
+        <main className="max-w-7xl mx-auto ">
+          <div className="border-gray-200 rounded-lg m-4 h-96">
+            <ActiveComponent />
           </div>
         </main>
       </div>

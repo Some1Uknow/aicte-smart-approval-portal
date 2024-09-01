@@ -7,7 +7,9 @@ const LandingPage = () => {
       <header className="bg-gray-900 text-white py-1">
         <div className="container mx-auto flex justify-between items-center px-4 flex-wrap">
           <div className="flex items-center space-x-2">
-            <span className="text-sm">Sunday, September 1, 2024 - 00:01:14 IST</span>
+            <span className="text-sm">
+              Sunday, September 1, 2024 - 00:01:14 IST
+            </span>
             <button className="text-sm">Screen Reader Access</button>
           </div>
           <div className="flex items-center space-x-4">
